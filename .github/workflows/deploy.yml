@@ -1,0 +1,27 @@
+name: Deploy Elman Travel
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Tailwind CSS
+        # Sesuaikan perintah ini dengan kebutuhan Anda
+        run: npx tailwindcss -i ./input.css -o ./style.css --minify
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Mengunggah seluruh folder proyek
+      - name: Deploy
+        uses: actions/deploy-pages@v4

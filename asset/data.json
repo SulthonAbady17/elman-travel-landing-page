@@ -1,0 +1,55 @@
+{
+  "kontak": {
+    "whatsapp": "6281234567890",
+    "pesan": ""
+  },
+  "hero": {
+    "desktop": "./asset/image/bg-dekstop.avif",
+    "mobile": "./asset/image/bg-mobile.avif",
+    "alt": "Rombongan Jamaah Umrah Elman Gemilang"
+  },
+  "paketUmroh": [
+    {
+      "imgSrc": "./asset/image/flyer/paket-arbain-16d.avif",
+      "imgAlt": "Paket Umroh Arbain 16 Hari"
+    },
+    {
+      "imgSrc": "./asset/image/flyer/paket-regular-10d.avif",
+      "imgAlt": "Paket Umroh Reguler 10 Hari"
+    },
+    {
+      "imgSrc": "./asset/image/flyer/paket-regular-12d.avif",
+      "imgAlt": "Paket Umroh Reguler 12 Hari"
+    },
+    {
+      "imgSrc": "./asset/image/flyer/paket-plus-turki-13d.avif",
+      "imgAlt": "Paket Umroh Plus Turki 13 Hari"
+    }
+  ],
+  "galeri": [
+    {
+      "src": "./asset/image/gallery/foto-1.webp",
+      "alt": "Galeri Jamaah 1"
+    },
+    {
+      "src": "./asset/image/gallery/foto-2.webp",
+      "alt": "Galeri Jamaah 2"
+    },
+    {
+      "src": "./asset/image/gallery/foto-3.webp",
+      "alt": "Galeri Jamaah 3"
+    },
+    {
+      "src": "./asset/image/gallery/foto-4.webp",
+      "alt": "Galeri Jamaah 4"
+    },
+    {
+      "src": "./asset/image/gallery/foto-5.webp",
+      "alt": "Galeri Jamaah 5"
+    },
+    {
+      "src": "./asset/image/gallery/foto-6.webp",
+      "alt": "Galeri Jamaah 6"
+    }
+  ]
+}
