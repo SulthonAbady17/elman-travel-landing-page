@@ -27,6 +27,14 @@
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            lucide.createIcons();
+        });
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -502,9 +510,8 @@
                     <!-- Facility Card 1 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Tiket"
-                                alt="Tiket Pesawat" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="plane" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Tiket Pesawat PP</h3>
@@ -516,9 +523,8 @@
                     <!-- Facility Card 2 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Hotel"
-                                alt="Hotel Berbintang" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="hotel" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Hotel Dekat Masjid</h3>
@@ -530,9 +536,8 @@
                     <!-- Facility Card 3 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Visa"
-                                alt="Visa Umroh" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Visa Umroh</h3>
@@ -544,9 +549,8 @@
                     <!-- Facility Card 4 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Makan"
-                                alt="Makan 3x" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="utensils" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Makan 3x Sehari</h3>
@@ -558,9 +562,8 @@
                     <!-- Facility Card 5 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Muthawif"
-                                alt="Muthawif" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="user-check" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Muthawif Berpengalaman
@@ -573,9 +576,8 @@
                     <!-- Facility Card 6 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Bus" alt="Bus AC"
-                                class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="bus" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Transportasi Bus AC</h3>
@@ -587,9 +589,8 @@
                     <!-- Facility Card 7 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=City+Tour"
-                                alt="City Tour" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">City Tour</h3>
@@ -601,9 +602,8 @@
                     <!-- Facility Card 8 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Perlengkapan"
-                                alt="Perlengkapan" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="luggage" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Perlengkapan Umroh</h3>
@@ -615,9 +615,8 @@
                     <!-- Facility Card 9 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Zamzam"
-                                alt="Air Zamzam" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="droplet" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Air Zamzam 5L</h3>
@@ -629,9 +628,8 @@
                     <!-- Facility Card 10 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Manasik"
-                                alt="Manasik" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Manasik Umroh</h3>
@@ -643,9 +641,8 @@
                     <!-- Facility Card 11 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Handling"
-                                alt="Handling" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="plane-landing" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Handling Bandara</h3>
@@ -657,9 +654,8 @@
                     <!-- Facility Card 12 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-24 h-16 md:w-28 md:h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                            <img decoding="async" src="https://placehold.co/120x80/f1f5f9/64748b?text=Asuransi"
-                                alt="Asuransi" class="w-full h-full object-cover">
+                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-base md:text-lg lg:text-xl">Asuransi Perjalanan</h3>
