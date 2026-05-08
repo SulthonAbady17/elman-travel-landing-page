@@ -30,7 +30,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             lucide.createIcons();
         });
     </script>
@@ -257,9 +257,12 @@
                 <template x-if="siteData.videoTestimoni">
                     <div
                         class="max-w-xs sm:max-w-md mx-auto mb-16 rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-                        <video class="w-full h-auto object-contain" :poster="siteData.videoTestimoni.thumbnail" controls>
-                            <source :src="siteData.videoTestimoni.sources[0].src" :type="siteData.videoTestimoni.sources[0].type">
-                            <source :src="siteData.videoTestimoni.sources[1].src" :type="siteData.videoTestimoni.sources[1].type">
+                        <video class="w-full h-auto object-contain" :poster="siteData.videoTestimoni.thumbnail" controls
+                            autoplay muted loop playsinline preload="auto">
+                            <source :src="siteData.videoTestimoni.sources[0].src"
+                                :type="siteData.videoTestimoni.sources[0].type">
+                            <source :src="siteData.videoTestimoni.sources[1].src"
+                                :type="siteData.videoTestimoni.sources[1].type">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -514,7 +517,8 @@
                     <!-- Facility Card 1 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="plane" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -527,7 +531,8 @@
                     <!-- Facility Card 2 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="hotel" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -540,7 +545,8 @@
                     <!-- Facility Card 3 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="file-text" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -553,7 +559,8 @@
                     <!-- Facility Card 4 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="utensils" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -566,7 +573,8 @@
                     <!-- Facility Card 5 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="user-check" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -580,7 +588,8 @@
                     <!-- Facility Card 6 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="bus" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -593,7 +602,8 @@
                     <!-- Facility Card 7 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="map-pin" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -606,7 +616,8 @@
                     <!-- Facility Card 8 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="luggage" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -619,7 +630,8 @@
                     <!-- Facility Card 9 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="droplet" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -632,7 +644,8 @@
                     <!-- Facility Card 10 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="book-open" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -645,7 +658,8 @@
                     <!-- Facility Card 11 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="plane-landing" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -658,7 +672,8 @@
                     <!-- Facility Card 12 -->
                     <div
                         class="bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
                             <i data-lucide="shield-check" class="w-6 h-6"></i>
                         </div>
                         <div>
