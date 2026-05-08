@@ -254,12 +254,16 @@
                 </h2>
 
                 <!-- Large Highlight Image -->
-                <div
-                    class="max-w-xs sm:max-w-md mx-auto mb-16 rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-                    <img decoding="async"
-                        src="https://placehold.co/600x900/003e54/ffffff?text=Cerita+Perjalanan\ndi+Tanah+Suci"
-                        alt="Cerita Perjalanan di Tanah Suci" class="w-full h-auto object-cover">
-                </div>
+                <template x-if="siteData.videoTestimoni">
+                    <div
+                        class="max-w-xs sm:max-w-md mx-auto mb-16 rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+                        <video class="w-full h-auto object-cover" :poster="siteData.videoTestimoni.thumbnail" controls>
+                            <source :src="siteData.videoTestimoni.sources[0].src" :type="siteData.videoTestimoni.sources[0].type">
+                            <source :src="siteData.videoTestimoni.sources[1].src" :type="siteData.videoTestimoni.sources[1].type">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </template>
 
                 <!-- Masonry-like Grid for Gallery -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" x-show="siteData.galeri.length > 0">

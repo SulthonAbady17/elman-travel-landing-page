@@ -51,5 +51,18 @@
       "src": "./asset/image/gallery/foto-6.webp",
       "alt": "Galeri Jamaah 6"
     }
-  ]
+  ],
+  "videoTestimoni": {
+    "thumbnail": "./asset/image/video-thumbnail-testimoni.webp",
+    "sources": [
+      {
+        "src": "./asset/video/video-testimoni-1.webm",
+        "type": "video/webm"
+      },
+      {
+        "src": "./asset/video/video-testimoni-2.mp4",
+        "type": "video/mp4"
+      }
+    ]
+  }
 }
