@@ -53,6 +53,7 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '2769398923259055');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent');
     </script>
     <!-- End Meta Pixel Code -->
 </head>
@@ -63,9 +64,10 @@
     @scroll.window="scrolled = (window.pageYOffset > 50)">
 
     <!-- Meta Pixel Code (Noscript) -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2769398923259055&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2769398923259055&ev=PageView&noscript=1" />
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2769398923259055&ev=ViewContent&noscript=1" />
+    </noscript>
     <!-- End Meta Pixel Code (Noscript) -->
 
     <!-- Navbar -->
