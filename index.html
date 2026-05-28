@@ -802,27 +802,22 @@
     </section>
 
     <!-- Kuesioner Konsultasi Section -->
-    <section id="konsultasi"
-      class="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white border-t border-b border-gray-200">
-      <div class="container mx-auto px-4 max-w-4xl">
-
+    <section id="konsultasi" class="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white border-t border-b border-gray-200">
+      <div class="container mx-auto px-4 max-w-5xl">
+        
         <!-- Section Header -->
         <div class="text-center mb-12">
-          <span
-            class="text-amber-600 font-bold tracking-widest text-xs uppercase bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200/50">Kuesioner
-            Kualifikasi</span>
+          <span class="text-amber-600 font-bold tracking-widest text-xs uppercase bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200/50">Formulir Rencana Umroh</span>
           <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-cyan-700 mt-4 mb-3">
             Rekomendasi Paket Umroh Kustom
           </h2>
           <p class="text-gray-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed font-medium">
-            Jawab 6 pertanyaan singkat berikut untuk mendapatkan rekomendasi program umroh terbaik yang paling sesuai
-            dengan profil dan kenyamanan Anda.
+            Lengkapi data diri dan preferensi perjalanan Anda di bawah ini untuk mendapatkan rekomendasi program perjalanan terbaik yang disesuaikan khusus dengan kenyamanan dan budget Anda.
           </p>
         </div>
 
         <!-- Card Wrapper -->
         <div x-data="{
-          formStep: 1,
           formData: {
             nama: '',
             keberangkatan: '',
@@ -831,15 +826,13 @@
             budget: '',
             prioritas: ''
           },
-          nextStep() {
-            if (this.formStep < 7) this.formStep++;
-          },
-          prevStep() {
-            if (this.formStep > 1) this.formStep--;
-          },
-          selectOption(field, value) {
-            this.formData[field] = value;
-            this.nextStep();
+          isFormValid() {
+            return this.formData.nama.trim() !== '' &&
+                   this.formData.kota.trim() !== '' &&
+                   this.formData.keberangkatan !== '' &&
+                   this.formData.jumlahOrang !== '' &&
+                   this.formData.budget !== '' &&
+                   this.formData.prioritas !== '';
           },
           submitToWhatsApp() {
             if (typeof fbq === 'function') {
@@ -852,7 +845,7 @@ Saya ingin berkonsultasi mengenai Program Umroh 2026.
 
 Berikut detail kebutuhan saya:
 • Nama Lengkap: ${this.formData.nama || '-'}
-• Rencana Keberangkatan: ${this.formData.keberangkatan || '-'}
+• Rencana Keberangkatan: &apos;${this.formData.keberangkatan || '-'}&apos;
 • Jumlah Peserta: ${this.formData.jumlahOrang || '-'}
 • Kota Asal: ${this.formData.kota || '-'}
 • Budget per Orang: ${this.formData.budget || '-'}
@@ -860,461 +853,398 @@ Berikut detail kebutuhan saya:
 
 Mohon rekomendasi program yang paling sesuai. Terima kasih.`;
             
-            const phone = (this.siteData && this.siteData.kontak) ? this.siteData.kontak.whatsapp : '628123456789';
+            const phone = (this.siteData && this.siteData.kontak) ? this.siteData.kontak.whatsapp : '6282112084040';
             const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(teksPesan);
             window.open(url, '_blank');
           }
-        }"
-          class="bg-white rounded-3xl shadow-xl border border-gray-150 overflow-hidden max-w-2xl mx-auto p-6 md:p-10 relative">
+        }" class="bg-white rounded-3xl shadow-xl border border-gray-150 overflow-hidden max-w-3xl mx-auto p-6 md:p-10 relative">
 
-          <!-- Progress Bar Area -->
-          <div class="mb-8" x-show="formStep <= 6">
-            <div class="flex justify-between items-center mb-3">
-              <span class="text-xs font-bold text-cyan-800/60 uppercase tracking-wider"
-                x-text="'Langkah ' + formStep + ' dari 6'"></span>
-              <span class="text-xs font-extrabold text-cyan-700"
-                x-text="Math.round((formStep / 6) * 100) + '% Selesai'"></span>
-            </div>
-            <!-- Progress Track -->
-            <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-              <div class="h-full bg-gradient-to-r from-cyan-700 to-amber-500 transition-all duration-500 rounded-full"
-                :style="'width: ' + ((formStep / 6) * 100) + '%'"></div>
-            </div>
-          </div>
-
-          <!-- Form Content -->
-          <form @submit.prevent>
-
-            <!-- Step 1: Nama Lengkap -->
-            <div x-show="formStep === 1" x-transition class="space-y-6">
-              <div class="text-center md:text-left">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-800">Siapa nama lengkap Anda?</h3>
-                <p class="text-gray-400 text-sm mt-1">Masukkan nama Anda untuk memudahkan komunikasi.</p>
-              </div>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                  <i data-lucide="user" class="w-5 h-5"></i>
-                </div>
-                <input type="text" x-model="formData.nama" placeholder="Masukkan nama lengkap Anda..."
-                  class="w-full pl-12 pr-5 py-4 text-base md:text-lg border border-gray-200 rounded-2xl focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/10 transition-all duration-300 font-medium placeholder-gray-400 text-gray-800"
-                  @keydown.enter.prevent="if (formData.nama.trim()) nextStep()" />
-              </div>
-            </div>
-
-            <!-- Step 2: Rencana Keberangkatan -->
-            <div x-show="formStep === 2" x-transition class="space-y-6">
-              <div class="text-center md:text-left">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-800">Kapan rencana keberangkatan Anda?</h3>
-                <p class="text-gray-400 text-sm mt-1">Pilih perkiraan waktu keberangkatan yang diinginkan.</p>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                <!-- Option 1 -->
-                <div @click="selectOption('keberangkatan', '< 1 Bulan')"
-                  :class="formData.keberangkatan === '< 1 Bulan' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="calendar" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">&lt; 1 Bulan</div>
-                    <div class="text-xs text-gray-400">Segera Berangkat</div>
-                  </div>
-                </div>
-
-                <!-- Option 2 -->
-                <div @click="selectOption('keberangkatan', '1 - 3 Bulan')"
-                  :class="formData.keberangkatan === '1 - 3 Bulan' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="calendar" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">1 - 3 Bulan</div>
-                    <div class="text-xs text-gray-400">Persiapan Dekat</div>
-                  </div>
-                </div>
-
-                <!-- Option 3 -->
-                <div @click="selectOption('keberangkatan', '3 - 6 Bulan')"
-                  :class="formData.keberangkatan === '3 - 6 Bulan' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="calendar" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">3 - 6 Bulan</div>
-                    <div class="text-xs text-gray-400">Merencanakan Matang</div>
-                  </div>
-                </div>
-
-                <!-- Option 4 -->
-                <div @click="selectOption('keberangkatan', 'Masih Survey')"
-                  :class="formData.keberangkatan === 'Masih Survey' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Masih Survey</div>
-                    <div class="text-xs text-gray-400">Mencari Info Dahulu</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Step 3: Jumlah Peserta -->
-            <div x-show="formStep === 3" x-transition class="space-y-6">
-              <div class="text-center md:text-left">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-800">Berapa jumlah peserta yang berangkat?</h3>
-                <p class="text-gray-400 text-sm mt-1">Ini membantu kami merencanakan pembagian kamar & akomodasi.</p>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                <!-- Option 1 -->
-                <div @click="selectOption('jumlahOrang', 'Sendiri')"
-                  :class="formData.jumlahOrang === 'Sendiri' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="user" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Sendiri</div>
-                    <div class="text-xs text-gray-400">Kamar Bersama / Single</div>
-                  </div>
-                </div>
-
-                <!-- Option 2 -->
-                <div @click="selectOption('jumlahOrang', '2 Orang')"
-                  :class="formData.jumlahOrang === '2 Orang' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">2 Orang</div>
-                    <div class="text-xs text-gray-400">Pasangan / Rekan (Double)</div>
-                  </div>
-                </div>
-
-                <!-- Option 3 -->
-                <div @click="selectOption('jumlahOrang', '3 - 5 Orang')"
-                  :class="formData.jumlahOrang === '3 - 5 Orang' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">3 - 5 Orang</div>
-                    <div class="text-xs text-gray-400">Keluarga Kecil (Triple/Quad)</div>
-                  </div>
-                </div>
-
-                <!-- Option 4 -->
-                <div @click="selectOption('jumlahOrang', 'Rombongan / Keluarga')"
-                  :class="formData.jumlahOrang === 'Rombongan / Keluarga' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Rombongan</div>
-                    <div class="text-xs text-gray-400">Grup Besar (> 5 Orang)</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Step 4: Kota Asal -->
-            <div x-show="formStep === 4" x-transition class="space-y-6">
-              <div class="text-center md:text-left">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-800">Dari kota mana Anda berasal?</h3>
-                <p class="text-gray-400 text-sm mt-1">Kami akan mengusulkan keberangkatan bandara terdekat/Surabaya.</p>
-              </div>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                  <i data-lucide="map-pin" class="w-5 h-5"></i>
-                </div>
-                <input type="text" x-model="formData.kota" placeholder="Masukkan kota domisili Anda..."
-                  class="w-full pl-12 pr-5 py-4 text-base md:text-lg border border-gray-200 rounded-2xl focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/10 transition-all duration-300 font-medium placeholder-gray-400 text-gray-800"
-                  @keydown.enter.prevent="if (formData.kota.trim()) nextStep()" />
-              </div>
-            </div>
-
-            <!-- Step 5: Range Budget -->
-            <div x-show="formStep === 5" x-transition class="space-y-6">
-              <div class="text-center md:text-left">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-800">Berapa estimasi budget per orang?</h3>
-                <p class="text-gray-400 text-sm mt-1">Kami menyediakan paket dari ekonomis hingga premium.</p>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                <!-- Option 1 -->
-                <div @click="selectOption('budget', '20 - 25 Juta')"
-                  :class="formData.budget === '20 - 25 Juta' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="wallet" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">20 - 25 Juta</div>
-                    <div class="text-xs text-gray-400">Hemat & Ekonomis</div>
-                  </div>
-                </div>
-
-                <!-- Option 2 -->
-                <div @click="selectOption('budget', '25 - 30 Juta')"
-                  :class="formData.budget === '25 - 30 Juta' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="wallet" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">25 - 30 Juta</div>
-                    <div class="text-xs text-gray-400">Standar Nyaman</div>
-                  </div>
-                </div>
-
-                <!-- Option 3 -->
-                <div @click="selectOption('budget', '30 - 40 Juta')"
-                  :class="formData.budget === '30 - 40 Juta' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="wallet" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">30 - 40 Juta</div>
-                    <div class="text-xs text-gray-400">Premium / Eksekutif</div>
-                  </div>
-                </div>
-
-                <!-- Option 4 -->
-                <div @click="selectOption('budget', 'Prioritas Fasilitas Terbaik')"
-                  :class="formData.budget === 'Prioritas Fasilitas Terbaik' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="gem" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Kenyamanan Maksimal</div>
-                    <div class="text-xs text-gray-400">Prioritas Hotel Dekat/Fasilitas Terbaik</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Step 6: Prioritas Utama -->
-            <div x-show="formStep === 6" x-transition class="space-y-6">
-              <div class="text-center md:text-left">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-800">Apa prioritas utama Anda dalam beribadah?</h3>
-                <p class="text-gray-400 text-sm mt-1">Kami mengutamakan aspek yang paling penting bagi kekhusyukan Anda.
-                </p>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                <!-- Option 1 -->
-                <div @click="selectOption('prioritas', 'Hotel Dekat')"
-                  :class="formData.prioritas === 'Hotel Dekat' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="hotel" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Hotel Dekat Masjid</div>
-                    <div class="text-xs text-gray-400">Fokus Ibadah & Jalan Kaki Cepat</div>
-                  </div>
-                </div>
-
-                <!-- Option 2 -->
-                <div @click="selectOption('prioritas', 'Jadwal Nyaman')"
-                  :class="formData.prioritas === 'Jadwal Nyaman' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="plane" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Jadwal Penerbangan Nyaman</div>
-                    <div class="text-xs text-gray-400">Penerbangan Langsung / Transit Singkat</div>
-                  </div>
-                </div>
-
-                <!-- Option 3 -->
-                <div @click="selectOption('prioritas', 'Pendamping Ibadah')"
-                  :class="formData.prioritas === 'Pendamping Ibadah' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="user-check" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Bimbingan Muthawif Intensif</div>
-                    <div class="text-xs text-gray-400">Pendampingan Sesuai Sunnah</div>
-                  </div>
-                </div>
-
-                <!-- Option 4 -->
-                <div @click="selectOption('prioritas', 'Harga')"
-                  :class="formData.prioritas === 'Harga' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="percent" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Harga Terbaik</div>
-                    <div class="text-xs text-gray-400">Mencari Paket Hemat Berkualitas</div>
-                  </div>
-                </div>
-
-                <!-- Option 5 -->
-                <div @click="selectOption('prioritas', 'Keamanan & Legalitas')"
-                  :class="formData.prioritas === 'Keamanan & Legalitas' ? 'border-cyan-600 bg-cyan-50/20 shadow-md ring-2 ring-cyan-600/10 text-cyan-900' : 'border-gray-200 hover:border-cyan-600 hover:bg-gray-50/50 text-gray-700 bg-white'"
-                  class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer transition-all duration-300 group hover:scale-[1.01] sm:col-span-2">
-                  <div
-                    class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
-                    <i data-lucide="shield-check" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-sm md:text-base text-gray-800">Keamanan & Legalitas Travel</div>
-                    <div class="text-xs text-gray-400">Kepastian Berangkat dengan Izin PPIU Kemenag Resmi</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Step 7: Halaman Terima Kasih & Ringkasan -->
-            <div x-show="formStep === 7" x-transition class="space-y-8">
-              <div class="text-center">
-                <div
-                  class="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-200">
-                  <i data-lucide="check-circle" class="w-10 h-10 animate-bounce"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-cyan-700">Rencana Terbentuk!</h3>
-                <p class="text-gray-500 text-sm mt-1 max-w-md mx-auto">Kami telah merangkum rencana perjalanan Anda.
-                  Silakan klik tombol di bawah untuk konsultasi langsung.</p>
-              </div>
-
-              <!-- Summary Box -->
-              <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 space-y-4">
-                <h4
-                  class="font-bold text-cyan-800 text-sm uppercase tracking-wider border-b border-gray-200 pb-2 flex items-center gap-2">
-                  <i data-lucide="file-text" class="w-4 h-4 text-cyan-600"></i>
-                  Ringkasan Rencana Umroh
-                </h4>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-
-                  <div class="flex items-start gap-3">
-                    <div class="text-cyan-600 mt-0.5"><i data-lucide="user" class="w-4 h-4"></i></div>
-                    <div>
-                      <div class="text-gray-400 text-xs font-semibold">Nama Lengkap</div>
-                      <div class="font-bold text-gray-800" x-text="formData.nama"></div>
+          <form @submit.prevent class="space-y-8">
+            
+            <!-- Section 1: Data Diri -->
+            <div class="space-y-4">
+              <h3 class="text-base md:text-lg font-bold text-cyan-800 flex items-center gap-2 border-b border-gray-150 pb-2">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                1. Informasi Kontak & Domisili
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Nama Lengkap -->
+                <div class="space-y-2">
+                  <label class="text-xs md:text-sm font-bold text-gray-700">Nama Lengkap *</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                      <i data-lucide="user" class="w-4 h-4"></i>
                     </div>
+                    <input
+                      type="text"
+                      x-model="formData.nama"
+                      placeholder="Masukkan nama lengkap..."
+                      class="w-full pl-10 pr-4 py-3 text-sm md:text-base border border-gray-200 rounded-xl focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/10 transition-all duration-300 font-medium placeholder-gray-400 text-gray-800"
+                    />
                   </div>
-
-                  <div class="flex items-start gap-3">
-                    <div class="text-cyan-600 mt-0.5"><i data-lucide="calendar" class="w-4 h-4"></i></div>
-                    <div>
-                      <div class="text-gray-400 text-xs font-semibold">Rencana Keberangkatan</div>
-                      <div class="font-bold text-gray-800" x-text="formData.keberangkatan"></div>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start gap-3">
-                    <div class="text-cyan-600 mt-0.5"><i data-lucide="users" class="w-4 h-4"></i></div>
-                    <div>
-                      <div class="text-gray-400 text-xs font-semibold">Jumlah Peserta</div>
-                      <div class="font-bold text-gray-800" x-text="formData.jumlahOrang"></div>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start gap-3">
-                    <div class="text-cyan-600 mt-0.5"><i data-lucide="map-pin" class="w-4 h-4"></i></div>
-                    <div>
-                      <div class="text-gray-400 text-xs font-semibold">Kota Asal</div>
-                      <div class="font-bold text-gray-800" x-text="formData.kota"></div>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start gap-3">
-                    <div class="text-cyan-600 mt-0.5"><i data-lucide="wallet" class="w-4 h-4"></i></div>
-                    <div>
-                      <div class="text-gray-400 text-xs font-semibold">Budget per Orang</div>
-                      <div class="font-bold text-gray-800" x-text="formData.budget"></div>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start gap-3 col-span-1 sm:col-span-2">
-                    <div class="text-cyan-600 mt-0.5"><i data-lucide="sparkles" class="w-4 h-4"></i></div>
-                    <div>
-                      <div class="text-gray-400 text-xs font-semibold">Prioritas Utama</div>
-                      <div class="font-bold text-gray-800" x-text="formData.prioritas"></div>
-                    </div>
-                  </div>
-
                 </div>
-              </div>
 
-              <!-- WhatsApp Action Button -->
-              <div class="pt-2">
-                <button type="button" @click="submitToWhatsApp()"
-                  class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 text-lg md:text-xl group">
-                  <svg class="w-6 h-6 fill-current group-hover:scale-110 transition-transform duration-300"
-                    viewBox="0 0 24 24">
-                    <path
-                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                  </svg>
-                  Konsultasi via WhatsApp (Gratis)
-                </button>
-                <div class="flex justify-center items-center gap-1.5 text-xs text-gray-400 mt-3 font-medium">
-                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-green-500"></i>
-                  Data langsung terenkripsi dan dikirim ke WhatsApp resmi kami.
+                <!-- Kota Asal -->
+                <div class="space-y-2">
+                  <label class="text-xs md:text-sm font-bold text-gray-700">Kota Domisili *</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                      <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    </div>
+                    <input
+                      type="text"
+                      x-model="formData.kota"
+                      placeholder="Contoh: Surabaya..."
+                      class="w-full pl-10 pr-4 py-3 text-sm md:text-base border border-gray-200 rounded-xl focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/10 transition-all duration-300 font-medium placeholder-gray-400 text-gray-800"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Card Bottom Navigation for Steps 1-6 -->
-            <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 min-h-[56px]"
-              x-show="formStep <= 6">
-              <div>
-                <button type="button" x-show="formStep > 1" @click="prevStep()"
-                  class="text-gray-500 hover:text-cyan-700 font-bold transition-colors flex items-center gap-1.5 py-2 text-sm">
-                  <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                  Kembali
-                </button>
-              </div>
-              <div>
-                <!-- Lanjutkan button for Step 1 -->
-                <button type="button" x-show="formStep === 1" @click="nextStep()" :disabled="!formData.nama.trim()"
-                  class="bg-cyan-700 text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-cyan-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 hover:-translate-y-0.5 text-sm">
-                  Lanjutkan
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
+            <!-- Section 2: Preferensi Waktu & Jumlah Peserta -->
+            <div class="space-y-6">
+              <h3 class="text-base md:text-lg font-bold text-cyan-800 flex items-center gap-2 border-b border-gray-150 pb-2">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                2. Rencana Keberangkatan & Akomodasi
+              </h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Rencana Keberangkatan -->
+                <div class="space-y-3">
+                  <label class="text-xs md:text-sm font-bold text-gray-700">Kapan Rencana Keberangkatan Anda? *</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    
+                    <!-- Option 1 -->
+                    <div 
+                      @click="formData.keberangkatan = '< 1 Bulan'"
+                      :class="formData.keberangkatan === '< 1 Bulan' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">&lt; 1 Bulan</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Segera Berangkat</div>
+                      </div>
+                    </div>
 
-                <!-- Lanjutkan button for Step 4 -->
-                <button type="button" x-show="formStep === 4" @click="nextStep()" :disabled="!formData.kota.trim()"
-                  class="bg-cyan-700 text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-cyan-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 hover:-translate-y-0.5 text-sm">
-                  Lanjutkan
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
+                    <!-- Option 2 -->
+                    <div 
+                      @click="formData.keberangkatan = '1 - 3 Bulan'"
+                      :class="formData.keberangkatan === '1 - 3 Bulan' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">1 - 3 Bulan</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Persiapan Dekat</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 3 -->
+                    <div 
+                      @click="formData.keberangkatan = '3 - 6 Bulan'"
+                      :class="formData.keberangkatan === '3 - 6 Bulan' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">3 - 6 Bulan</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Merencanakan Matang</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 4 -->
+                    <div 
+                      @click="formData.keberangkatan = 'Masih Survey'"
+                      :class="formData.keberangkatan === 'Masih Survey' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Masih Survey</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Mencari Info Dahulu</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Jumlah Peserta -->
+                <div class="space-y-3">
+                  <label class="text-xs md:text-sm font-bold text-gray-700">Jumlah Peserta yang Berangkat? *</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    
+                    <!-- Option 1 -->
+                    <div 
+                      @click="formData.jumlahOrang = 'Sendiri'"
+                      :class="formData.jumlahOrang === 'Sendiri' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Sendiri</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Kamar Bersama / Single</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 2 -->
+                    <div 
+                      @click="formData.jumlahOrang = '2 Orang'"
+                      :class="formData.jumlahOrang === '2 Orang' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">2 Orang</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Pasangan / Rekan</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 3 -->
+                    <div 
+                      @click="formData.jumlahOrang = '3 - 5 Orang'"
+                      :class="formData.jumlahOrang === '3 - 5 Orang' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">3 - 5 Orang</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Keluarga Kecil</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 4 -->
+                    <div 
+                      @click="formData.jumlahOrang = 'Rombongan / Keluarga'"
+                      :class="formData.jumlahOrang === 'Rombongan / Keluarga' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Rombongan</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Grup Besar (> 5 Orang)</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Anggaran & Prioritas -->
+            <div class="space-y-6">
+              <h3 class="text-base md:text-lg font-bold text-cyan-800 flex items-center gap-2 border-b border-gray-150 pb-2">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                3. Rencana Anggaran & Fokus Prioritas
+              </h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Estimasi Budget -->
+                <div class="space-y-3">
+                  <label class="text-xs md:text-sm font-bold text-gray-700">Estimasi Budget per Orang *</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    
+                    <!-- Option 1 -->
+                    <div 
+                      @click="formData.budget = '20 - 25 Juta'"
+                      :class="formData.budget === '20 - 25 Juta' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="wallet" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">20 - 25 Juta</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Hemat & Ekonomis</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 2 -->
+                    <div 
+                      @click="formData.budget = '25 - 30 Juta'"
+                      :class="formData.budget === '25 - 30 Juta' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="wallet" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">25 - 30 Juta</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Standar Nyaman</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 3 -->
+                    <div 
+                      @click="formData.budget = '30 - 40 Juta'"
+                      :class="formData.budget === '30 - 40 Juta' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="wallet" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">30 - 40 Juta</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Premium / Eksekutif</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 4 -->
+                    <div 
+                      @click="formData.budget = 'Prioritas Fasilitas Terbaik'"
+                      :class="formData.budget === 'Prioritas Fasilitas Terbaik' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="gem" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Kenyamanan Maksimal</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Prioritas Hotel Dekat</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Prioritas Utama -->
+                <div class="space-y-3">
+                  <label class="text-xs md:text-sm font-bold text-gray-700">Fokus Prioritas Anda? *</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    
+                    <!-- Option 1 -->
+                    <div 
+                      @click="formData.prioritas = 'Hotel Dekat'"
+                      :class="formData.prioritas === 'Hotel Dekat' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="hotel" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Hotel Dekat Masjid</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Jalan Kaki Cepat</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 2 -->
+                    <div 
+                      @click="formData.prioritas = 'Jadwal Nyaman'"
+                      :class="formData.prioritas === 'Jadwal Nyaman' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="plane" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Penerbangan Nyaman</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Pasti berangkat & nyaman</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 3 -->
+                    <div 
+                      @click="formData.prioritas = 'Pendamping Ibadah'"
+                      :class="formData.prioritas === 'Pendamping Ibadah' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="user-check" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Bimbingan Muthawif</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Pendampingan Sesuai Sunnah</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 4 -->
+                    <div 
+                      @click="formData.prioritas = 'Harga'"
+                      :class="formData.prioritas === 'Harga' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01]"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="percent" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Harga Terbaik</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Paket Hemat Berkualitas</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 5 -->
+                    <div 
+                      @click="formData.prioritas = 'Keamanan & Legalitas'"
+                      :class="formData.prioritas === 'Keamanan & Legalitas' ? 'border-cyan-600 bg-cyan-50/20 ring-2 ring-cyan-600/10' : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-gray-50/30'"
+                      class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-300 group hover:scale-[1.01] sm:col-span-2"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-50 text-cyan-600 shrink-0 group-hover:bg-cyan-100 transition-colors">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                      </div>
+                      <div class="text-left">
+                        <div class="font-bold text-xs md:text-sm text-gray-800">Keamanan & Legalitas Travel</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 font-medium">Kepastian Berangkat dengan Izin PPIU Kemenag Resmi</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button Area -->
+            <div class="pt-6 border-t border-gray-150 space-y-4">
+              
+              <!-- Message Validation Status -->
+              <div class="text-center text-xs md:text-sm font-medium">
+                <template x-if="!isFormValid()">
+                  <div class="text-amber-600 flex items-center justify-center gap-1.5 bg-amber-50 py-2.5 px-4 rounded-xl border border-amber-200/40">
+                    <i data-lucide="info" class="w-4 h-4 shrink-0"></i>
+                    Silakan lengkapi seluruh isian data diri & pilihan kartu di atas untuk mengaktifkan tombol konsultasi.
+                  </div>
+                </template>
+                <template x-if="isFormValid()">
+                  <div class="text-green-600 flex items-center justify-center gap-1.5 bg-green-50/50 py-2.5 px-4 rounded-xl border border-green-200/40">
+                    <i data-lucide="check-circle" class="w-4 h-4 shrink-0"></i>
+                    Formulir lengkap! Klik tombol di bawah untuk langsung berkonsultasi via WhatsApp.
+                  </div>
+                </template>
+              </div>
+
+              <!-- Submit button -->
+              <button
+                type="button"
+                @click="submitToWhatsApp()"
+                :disabled="!isFormValid()"
+                :class="isFormValid() ? 'bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer' : 'bg-gray-200 text-gray-400 cursor-not-allowed opacity-60'"
+                class="w-full font-bold py-4 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-3 text-lg md:text-xl group"
+              >
+                <svg class="w-6 h-6 fill-current group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Konsultasi via WhatsApp (Gratis)
+              </button>
+              
+              <div class="flex justify-center items-center gap-1.5 text-xs text-gray-400 font-medium">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-green-500"></i>
+                Data langsung terenkripsi dan dikirim ke WhatsApp resmi kami.
               </div>
             </div>
 
@@ -1323,8 +1253,7 @@ Mohon rekomendasi program yang paling sesuai. Terima kasih.`;
         </div>
       </div>
     </section>
-
-    <!-- FAQ Section -->
+<!-- FAQ Section -->
     <section class="py-16 md:py-24 bg-gray-50 border-t border-gray-200" id="faq">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-12">
