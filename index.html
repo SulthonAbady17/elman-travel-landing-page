@@ -67,7 +67,6 @@
     );
     fbq("init", "2769398923259055");
     fbq("track", "PageView");
-    fbq("track", "ViewContent");
   </script>
   <!-- End Meta Pixel Code -->
 </head>
@@ -82,13 +81,12 @@
         return 'https://wa.me/' + phone + (msg ? '?text=' + encodeURIComponent(msg) : '');
       }
     }" x-init="fetch('./asset/data.json').then(res => res.json()).then(data => siteData = data)"
-  @scroll.window="scrolled = (window.pageYOffset > 50)">
+  @scroll.window="scrolled = (window.pageYOffset > 50)"
+  @scroll.window.once="if (window.pageYOffset > 300 && typeof fbq === 'function') fbq('track', 'ViewContent');">
   <!-- Meta Pixel Code (Noscript) -->
   <noscript>
     <img height="1" width="1" style="display: none"
       src="https://www.facebook.com/tr?id=2769398923259055&ev=PageView&noscript=1" />
-    <img height="1" width="1" style="display: none"
-      src="https://www.facebook.com/tr?id=2769398923259055&ev=ViewContent&noscript=1" />
   </noscript>
   <!-- End Meta Pixel Code (Noscript) -->
 
@@ -846,6 +844,7 @@
           submitToWhatsApp() {
             if (typeof fbq === 'function') {
               fbq('track', 'Lead');
+              fbq('track', 'Contact');
             }
             
             const teksPesan = `Assalamualaikum Wr. Wb.
