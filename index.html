@@ -855,7 +855,11 @@ Mohon rekomendasi program yang paling sesuai. Terima kasih.`;
             
             const phone = (this.siteData && this.siteData.kontak) ? this.siteData.kontak.whatsapp : '6282112084040';
             const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(teksPesan);
-            window.open(url, '_blank');
+            
+            // Jeda 300ms agar pixel tracking sempat terkirim sebelum tab WhatsApp dibuka
+            setTimeout(() => {
+              window.open(url, '_blank');
+            }, 300);
           }
         }" class="bg-white rounded-3xl shadow-xl border border-gray-150 overflow-hidden max-w-3xl mx-auto p-6 md:p-10 relative">
 
